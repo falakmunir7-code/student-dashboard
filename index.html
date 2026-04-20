@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            margin: auto;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        button {
+            background: #4facfe;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #007bff;
+        }
+
+        #dashboard {
+            display: none;
+        }
+
+        canvas {
+            margin-top: 20px;
+        }
+
+        .back-btn {
+            background: #ff6b6b;
+        }
+
+        .back-btn:hover {
+            background: #ff3b3b;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<div id="home" class="container">
+    <div class="card">
+        <h1>🎓 Student Dashboard</h1>
+        <p>Enter Student ID (A, B, C)</p>
+        <input type="text" id="studentInput" placeholder="Enter A / B / C">
+        <br>
+        <button onclick="loadDashboard()">View Dashboard</button>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="container">
+    <div class="card">
+        <h2 id="studentTitle"></h2>
+        <button class="back-btn" onclick="goBack()">⬅ Back</button>
+
+        <canvas id="myChart" width="300" height="200"></canvas>
+    </div>
+</div>
+
+<script>
+const dataSet = {
+    A: [85, 78, 90],
+    B: [70, 88, 75],
+    C: [92, 80, 85]
+};
+
+let chart;
+
+function loadDashboard() {
+    const input = document.getElementById('studentInput').value.toUpperCase();
+
+    if (!dataSet[input]) {
+        alert("Invalid Student ID! Use A, B, or C.");
+        return;
+    }
+
+    document.getElementById('home').style.display = "none";
+    document.getElementById('dashboard').style.display = "block";
+
+    document.getElementById('studentTitle').innerText = "📊 Student " + input + " Performance";
+
+    const ctx = document.getElementById('myChart');
+
+    if (chart) {
+        chart.destroy();
+    }
+
+    chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Math', 'Science', 'English'],
+            datasets: [{
+                label: 'Marks',
+                data: dataSet[input]
+            }]
+        }
+    });
+}
+
+function goBack() {
+    document.getElementById('home').style.display = "block";
+    document.getElementById('dashboard').style.display = "none";
+}
+</script>
+
+</body>
+</html>
