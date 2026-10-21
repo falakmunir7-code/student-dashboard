@@ -14,11 +14,10 @@ An interactive web-based dashboard that allows users to view student performance
 - JavaScript
 - Chart.js
 
-## ▶️ How to Run
-1. Download or clone the project  
-2. Open `index.html` in a browser  
-3. Enter a student ID (A, B, or C)  
-4. View the performance dashboard  
+## ▶️ Live website
+
+https://falakmunir7-code.github.io/student-dashboard/
+
 
 ## 📁 Project Structure
 student-dashboard/
@@ -32,4 +31,4 @@ student-dashboard/
 - Connect to real datasets  
 
 ## 📌 Author
-Falak Munir
+Falak Munir Ahmed Tanga
